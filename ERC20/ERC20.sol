@@ -19,7 +19,7 @@ contract Token is IERC20 {
         name = _name;
         symbol = _symbol;
         totalSupply = _totalSupply * 10 ** decimals;
-        balances[msg.sender] = _totalSupply;
+        balances[msg.sender] = totalSupply;
     }
     
     function balanceOf(address _owner) public view override returns (uint256 balance) {
@@ -29,7 +29,7 @@ contract Token is IERC20 {
     function transfer(address _to, uint256 _value) public override returns (bool success) {
         require(balances[msg.sender] >= _value);
         balances[msg.sender] -= _value;
-        balances[_to] = _value;
+        balances[_to] += _value;
         
         emit Transfer(msg.sender, _to, _value);
         
