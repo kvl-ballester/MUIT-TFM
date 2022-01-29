@@ -1,0 +1,41 @@
+.container {
+    width: 75%;
+    height: 50px;
+    margin: 15px 20px;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    background-color: lightseagreen;
+    border-radius: 6px;
+    
+    .item {
+        height: 100%;
+        width: 25%;
+        margin-left: 12px;
+
+        &:last-child{
+            margin-right: 12px;
+        }
+
+        text-decoration: none;
+        color: black;
+        display: block;
+        height: 100%;
+        text-align: center;
+        font-weight: 500;
+
+        &:hover {
+            background-clip: content-box;
+            background-color: lightcoral;
+
+        }
+
+        display: flex;
+        align-items: center;
+        justify-content: center;        
+
+    }
+}
+
