@@ -1,0 +1,26 @@
+.button {
+    max-width: 150px;
+    min-height: 50px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.blue {
+    background-color: rgb(0, 183, 255);
+}
+
+.red {
+    background-color: rgb(224, 0, 30);
+}
+
