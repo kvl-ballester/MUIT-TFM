@@ -1,6 +1,6 @@
 .button {
     max-width: 150px;
-    min-height: 50px;
+    min-height: 25px;
     background-color: black;
     color: white;
     font-size: 16px;
@@ -10,6 +10,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    padding: 0 12px;
 
     &:hover {
         cursor: pointer;
@@ -22,5 +24,12 @@
 
 .red {
     background-color: rgb(224, 0, 30);
+}
+
+.disabled {
+    background-color: rgb(201, 201, 201);
+    &:hover {
+        cursor: default;
+    }
 }
 
