@@ -27,7 +27,7 @@ contract Token is IERC20 {
     }
     
     function transfer(address _to, uint256 _value) public override returns (bool success) {
-        require(balances[msg.sender] >= _value);
+        require(balances[msg.sender] >= _value, "ERC20: transfer amount exceeds account balance");
         balances[msg.sender] -= _value;
         balances[_to] += _value;
         
