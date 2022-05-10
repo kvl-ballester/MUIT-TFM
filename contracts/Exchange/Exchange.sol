@@ -8,7 +8,6 @@ import "./ExchangeFactory.sol";
 contract Exchange {
     Token private token;
     ExchangeFactory private factory;
-    bool private initialized;
     mapping(address => uint) private ether_balance;
     
     event PoolInitialized(address indexed _tokenAddress, uint _ether, uint _token);
@@ -19,49 +18,41 @@ contract Exchange {
 	    require(_token != address(0), "zero address");
 	    token = Token(_token);
 	    factory = ExchangeFactory(msg.sender);
-	    initialized = false;
         
 	}
 	
-	modifier poolEmpty {
-	    require (!initialized, "EXCHANGE: liquidity pool is already initialized");
-	    _;
-	}
-	
-	modifier poolInitialized {
-	    require (initialized, "EXCHANGE: liquidity pool has not been initialized yet");
-	    _;
-	}
-	
-	function setupPool(uint _tokenAmount) public poolEmpty payable {
-	    require(msg.value >= 1e9 wei, "EXCHANGE: the minimun amount of ether to be deposited is 1Gwei");
-	    token.transferFrom(msg.sender, address(this), _tokenAmount);
-	    ether_balance[msg.sender] += msg.value;
-	    initialized = true;
-	    emit PoolInitialized(address(token), msg.value, _tokenAmount);
-	}
-	
-	function addLiquidity() public poolInitialized payable returns(bool) {
-	    require(msg.value >= 1e4 wei, "EXCHANGE: the minimun amount of ether to be deposited is 10000 wei");
-	    uint ethReserve = address(this).balance - msg.value;
-	    uint tokenReserve = getTokenLiquidity();
-	    uint tokenToDeposit = msg.value * tokenReserve / ethReserve + 1;
+	function addLiquidity(uint _tokenAmount) public  payable returns(bool) {
+		require(msg.value >= 1e9 wei, "EXCHANGE: the minimun amount of ether to be deposited is 1Gwei");
+
+		uint tokenReserve = getTokenLiquidity();
+		
+		// If pool has 0 liquidity it initialises it
+		if(tokenReserve == 0) {
+			token.transferFrom(msg.sender, address(this), _tokenAmount);
+			ether_balance[msg.sender] += msg.value;
+			emit PoolInitialized(address(token), msg.value, _tokenAmount);
+
+		} else {
+			uint ethReserve = address(this).balance - msg.value;
+			uint tokenToDeposit = msg.value * tokenReserve / ethReserve + 1;
+			
+			// Updates balance
+			ether_balance[msg.sender] += msg.value;
+			
+			//Makes token transfer
+			token.transferFrom(msg.sender, address(this), tokenToDeposit);
+			
+			//TO DO: mint native token
+			
+			emit AddLiquidity(msg.sender, msg.value, tokenToDeposit);
+      	}
 	    
-	    // Updates balance
-	    ether_balance[msg.sender] += msg.value;
-	    
-	    //Makes token transfer
-	    token.transferFrom(msg.sender, address(this), tokenToDeposit);
-	    
-	    //TO DO: mint native token
-	    
-	    emit AddLiquidity(msg.sender, msg.value, tokenToDeposit);
 	    
 	    return true;
 	    
 	}
 
-	function removeLiquidity(uint _etherAmount) public poolInitialized returns(bool) {
+	function removeLiquidity(uint _etherAmount) public  returns(bool) {
 	    require(_etherAmount != 0, "EXCHANGE: ether amount should be greater than 0");
 	    require(_etherAmount >= ether_balance[msg.sender], "EXCHANGE: ether amount exceeds balance account");
 	    require(_etherAmount >= address(this).balance, "EXCHANGE: ether amount exceeds pool balance");
@@ -86,7 +77,7 @@ contract Exchange {
 	
 	//###############  SWAPPING FUNCTIONS ############
 	//// ETH TO TOKEN
-	function ethToTokenSwap() public poolInitialized payable returns(bool, uint) {
+	function ethToTokenSwap() public  payable returns(bool, uint) {
 	    uint ethReserve = address(this).balance - msg.value;
 	    uint tokenReserve = getTokenLiquidity();
 	    uint k = ethReserve * tokenReserve;
@@ -100,8 +91,7 @@ contract Exchange {
 	    
 	    return (true, tokenToGive);
 	    
-	}
-	
+	}	
 	
 	
 	function ethToTokenOutput(uint _etherAmount) public view returns(uint) {
@@ -133,7 +123,7 @@ contract Exchange {
 	}
 	
 	
-	function tokenToEthSwap(uint _tokenAmount) public poolInitialized returns(bool, uint) {
+	function tokenToEthSwap(uint _tokenAmount) public  returns(bool, uint) {
 	    require(_tokenAmount != 0, "EXCHANGE: token amount should be greater than 0");
 	    uint ethToGive = tokenToEthInput(_tokenAmount);
 	    
@@ -153,7 +143,7 @@ contract Exchange {
 	}
 	    
 	//// TOKEN TO TOKEN
-	function tokenToTokenSwap( uint _tokenAmount, address _tokenAddress) public poolInitialized returns(bool) {
+	function tokenToTokenSwap( uint _tokenAmount, address _tokenAddress) public  returns(bool) {
 	    require(_tokenAmount != 0, "EXCHANGE: token amount should be greater than 0");
 	    Exchange tokenExchange = Exchange(payable(factory.token_to_exchange(_tokenAddress)));
 	    Token tokenTarget = Token(factory.exchange_to_token(address(tokenExchange)));
@@ -183,7 +173,7 @@ contract Exchange {
 	
 	//########## TRANSFER TO FUNCTIONS ############
 	//// ETH TO TOKEN
-	function ethToTokenTransferTo(address _receiver) public poolInitialized payable returns(bool, uint) {
+	function ethToTokenTransferTo(address _receiver) public  payable returns(bool, uint) {
 	    uint ethReserve = address(this).balance - msg.value;
 	    uint tokenReserve = getTokenLiquidity();
 	    uint k = ethReserve * tokenReserve;
@@ -200,7 +190,7 @@ contract Exchange {
 	}
 	
 	//// TOKEN TO ETH
-	function tokenToEthTransferTo(uint _tokenAmount, address payable _receiver) public poolInitialized returns(bool, uint) {
+	function tokenToEthTransferTo(uint _tokenAmount, address payable _receiver) public  returns(bool, uint) {
 	    uint ethToGive = tokenToEthInput(_tokenAmount);
 	    
 	    //transfer token 
@@ -212,7 +202,7 @@ contract Exchange {
 	}
 	
 	//// TOKEN TO TOKEN
-	function tokenToTokenTransferTo( uint _tokenAmount, address _tokenAddress, address _receiver) public poolInitialized returns(bool) {
+	function tokenToTokenTransferTo( uint _tokenAmount, address _tokenAddress, address _receiver) public  returns(bool) {
 	    require(_tokenAmount != 0, "EXCHANGE: token amount should be greater than 0");
 	    Exchange tokenExchange = Exchange(payable(factory.token_to_exchange(_tokenAddress)));
 	    Token tokenTarget = Token(factory.exchange_to_token(address(tokenExchange)));
