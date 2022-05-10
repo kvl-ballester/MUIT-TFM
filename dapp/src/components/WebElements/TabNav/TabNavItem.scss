@@ -1,6 +1,6 @@
 .nav-item {
     list-style-type: none;
-    width: 33.33%;
+    width: 50%;
     height: 100%;
     border: 1px solid black;
     overflow: hidden;
@@ -23,17 +23,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: blue;
+        background-color:  white;
 
 
         &:hover {
             cursor: pointer;
-            background-color: blueviolet;
         }
     }
 
     .active {
-
-        background-color: blueviolet;
+        font-weight: 900;
+        background-color: rgb(39, 39, 39);
     }
 }
