@@ -5,9 +5,495 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: auto !important;
+  width: 100% !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Styling for modal to select token */
+.modal-select-token .ant-modal {
+  width: 20% !important;
+  min-width: 250px;
+  height: 50% !important;
+}
+
+.modal-select-token .ant-modal .ant-modal-content {
+  height: 100% !important;
+}
+
+
+.modal-select-token .ant-modal .ant-modal-content,
+.modal-select-token .ant-modal .ant-modal-header {
+  border-radius: 8px !important;
+  background-color: #272727;
+  overflow: hidden;
+
+}
+
+.modal-select-token .ant-modal .ant-modal-content,
+.modal-select-token .ant-modal .ant-modal-title {
+  color: white;
+}
+
+
+
+.modal-select-token .ant-modal .ant-modal-header {
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom: 1px solid #b4b4b4;
+}
+
+.modal-select-token .ant-modal .ant-modal-content svg {
+  color: white;
+}
+
+.modal-select-token .ant-modal .ant-modal-content .ant-modal-body {
+  padding: 0;
+}
+
+.modal-select-token .ant-modal .ant-modal-content .ant-modal-body .token-item {
+  height: 50px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-select-token .ant-modal .ant-modal-content .ant-modal-body .token-item:hover {
+  cursor: pointer;
+  background-color: #b4b4b4;
+}
+
+
+.modal-select-token .ant-modal-body .token-item .symbol{
+  font-size: 18px;
+  line-height: 18px;
+  display: flex;
+  
+}
+
+.modal-select-token .ant-modal-body .token-item .name{
+  font-size: 12px;
+  line-height: 12px;
+}
+
+/* Styling for spinner */
+.spinner-container .ant-spin-dot {
+  width: 3em;
+  height: 3em;
+}
+
+.spinner-container .ant-spin-dot .ant-spin-dot-item {
+  height: 20px;
+  width: 20px;
+}
+
+
+/* Stylyng modal for TOKEN transaction */
+.modal-token-transaction .ant-modal {
+  width: 40% !important;
+  min-width: 250px;
+  height: 50% !important;
+}
+
+.modal-token-transaction .ant-modal .ant-modal-content {
+  height: 70% !important;
+}
+
+.modal-token-transaction .ant-modal .ant-modal-content .transaction-result {
+  color: green;
+}
+
+.modal-token-transaction .ant-modal .transaction-result.error {
+  color: red;
+}
+
+.modal-token-transaction .ant-modal .transaction-result {
+  text-align: center;
+}
+
+.modal-token-transaction .ant-modal .transaction-result .text h2{
+  color: green !important;
+}
+
+.modal-token-transaction .ant-modal .transaction-result .text.error h2{
+  color: red !important;
+}
+
+.modal-token-transaction .transaction-result .logo svg{
+  height: 5em;
+  width: 5em;
+  margin-bottom: 20px;
+}
+
+.modal-token-transaction .ant-modal .ant-modal-content,
+.modal-token-transaction .ant-modal .ant-modal-header {
+  border-radius: 8px !important;
+  overflow: hidden;
+
+}
+
+.modal-token-transaction .spinner-container {
+  margin-top: 15px;
+}
+.modal-token-transaction .spinner-container h2{
+  text-align: center;
+}
+
+
+.allowance-modal .ant-modal-content {
+  border-radius: 8px;
+}
+
+
+/* MODAL CREATE POOL */
+.modal-create-pool .ant-modal .ant-modal-content,
+.modal-create-pool .ant-modal .ant-modal-header {
+  border-radius: 8px !important;
+  overflow: hidden;
+
+}
+
+.modal-create-pool .ant-modal {
+  width: 40% !important;
+  min-width: 250px;
+  height: 50% !important;
+}
+
+.modal-create-pool .ant-modal .ant-modal-content {
+  height: 60% !important;
+}
+
+.modal-create-pool .ant-modal-body {
+  height: 80%;
+}
+
+.modal-create-pool .content-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.modal-create-pool .create-exchange-button {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 12px;
+}
+
+.modal-create-pool input {
+  width: 100%;
+  border-radius: 4px;
+}
+
+
+
+
+/* Stylyng modal for EXCHANGE transaction */
+.modal-exchange-transaction .ant-modal {
+  width: 40% !important;
+  min-width: 250px;
+  min-height: 350px !important;
+}
+
+.modal-exchange-transaction .ant-modal .ant-modal-content {
+  min-height: 350px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-exchange-transaction .ant-modal .ant-modal-content,
+.modal-exchange-transaction .ant-modal .ant-modal-header {
+  border-radius: 8px !important;
+  overflow: hidden;
+
+}
+
+.modal-exchange-transaction .ant-modal .ant-modal-body {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.modal-exchange-transaction .ant-modal .ant-modal-content .approve-token-stage,
+.modal-exchange-transaction .ant-modal .ant-modal-content .confirm-transaction-stage {
+  text-align: center;
+}
+
+.modal-exchange-transaction .ant-modal .ant-modal-content .token-amount{
+  font-size: 48px;
+  font-style: italic;
+}
+
+.modal-exchange-transaction .spinner-container {
+  margin-top: 15px;
+  gap: 25px;
+}
+
+.modal-exchange-transaction  .ant-modal .text h2,
+.modal-exchange-transaction  .ant-modal .text h3,
+.modal-exchange-transaction .ant-modal .confirm-transaction-stage .logo {
+  color: green !important;
+}
+
+.modal-exchange-transaction  .ant-modal .text.error h2,
+.modal-exchange-transaction .ant-modal .error .logo {
+  color: red !important;
+  text-align: center;
+}
+
+
+.modal-exchange-transaction  .logo svg{
+  height: 5em;
+  width: 5em;
+  margin-bottom: 20px;
+}
+
+.modal-exchange-transaction .ant-modal .confirm-transaction-stage .confirm-transaction {
+  margin-top: 20px;
+}
+
+
+/* MODAL CREATE TOKEN */
+.modal-create-token .ant-modal {
+  width: 40% !important;
+  min-width: 350px;
+  min-height: 350px !important;
+}
+
+.modal-create-token .ant-modal .ant-modal-content {
+  min-height: 350px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-create-token .ant-modal .ant-modal-body {
+  width: 90%;
+}
+
+
+.modal-create-token .ant-modal .ant-modal-content,
+.modal-create-token .ant-modal .ant-modal-header {
+  border-radius: 8px !important;
+  overflow: hidden;
+
+}
+
+.modal-create-token .token-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.modal-create-token .form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-create-token .form-field input{
+  border-radius: 4px;
+}
+
+.modal-create-token .create-token-spinner{
+  margin: 64px 0;
+}
+
+.modal-create-token .buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-create-token .new-token-address {
+  text-align: center;
+  margin: 12px 0;
+  font-weight: 900;
+}
+
+.modal-create-token .create-exchange-button {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-create-token .exchange-result h4{
+  padding-left: 24px;
+  margin-bottom: 24px;
+}
+
+.modal-create-token .error-transaction {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.modal-create-token .logo svg{
+  height: 5em;
+  width: 5em;
+}
+
+.modal-create-token .logo.error,
+.modal-create-token .text.error h3 {
+  color: red !important;
+  margin-bottom: 12px;
+}
+
+
+
+.modal-create-pool .succesfull-transaction,
+.modal-create-pool .error-transaction {
+  text-align: center;
+  margin: 32px 0;
+}
+
+.modal-create-pool .logo svg{
+  height: 5em;
+  width: 5em;
+}
+
+.modal-create-pool .logo.ok,
+.modal-create-pool .text h3 {
+  color: green !important;
+  margin-bottom: 12px;
+}
+
+.modal-create-pool .logo.error,
+.modal-create-pool .text.error h3 {
+  color: red !important;
+  margin-bottom: 12px;
+}
+
+.modal-create-pool .create-token-spinner{
+  margin: 32px 0;
+}
+
+/* ADD LIQUIDITY MODAL */
+.modal-add-liquidity .dropdown-menu {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0;
+}
+
+.modal-add-liquidity .ant-modal .ant-modal-content,
+.modal-add-liquidity .ant-modal .ant-modal-header {
+  border-radius: 8px !important;
+  overflow: hidden;
+
+}
+
+
+
+.modal-add-liquidity .dropdown-menu .token-selected {
+  font-size: 1.5em;
+  font-weight: 700;
+  width: 50%;
+  padding: 0 12px;
+  border: 1px solid black;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+}
+
+.modal-add-liquidity .buttons{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 42px;
+}
+
+.modal-add-liquidity .dropdown-menu .token-selected svg {
+  margin-left: auto;
+}
+
+.modal-add-liquidity .warning {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgb(118, 118, 0);
+  margin-bottom: 12px;
+}
+
+.modal-add-liquidity .liquidity-amounts {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 12px;
+}
+
+.modal-add-liquidity .form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-add-liquidity .form-control input{
+  height: 40px;
+  border-radius: 4px;
+}
+
+.add-liquidity-dropdown .ant-dropdown-menu {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.modal-add-liquidity .msg {
+  font-size: 10px;
+}
+
+.modal-add-liquidity .finish-button,
+.modal-add-liquidity .approve-button,
+.modal-add-liquidity .error-button,
+.modal-add-liquidity .liquidity-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 42px;
+}
+.modal-add-liquidity .approve-amount {
+  text-align: center;
+  font-style: italic;
+  margin: 12px 0;
+}
+
+.modal-add-liquidity .succesfull-transaction,
+.modal-add-liquidity .error-transaction {
+  text-align: center;
+}
+
+.modal-add-liquidity .operation-params {
+  padding-left: 12px;
+  display: flex;
+  flex-direction: column;
+  margin: 24px 0;
+  gap: 8px;
+
+  font-size: 20px;
+}
+
+.modal-add-liquidity .spinner-container {
+  margin: 32px 0;
+}
+
+.modal-add-liquidity .logo svg{
+  height: 5em;
+  width: 5em;
+}
+
+.modal-add-liquidity .logo.error,
+.modal-add-liquidity .text.error h3 {
+  color: red !important;
+  margin-bottom: 12px;
+}
+
+.modal-add-liquidity .logo,
+.modal-add-liquidity .text h3 {
+  color: green !important;
+  margin-bottom: 12px;
 }
