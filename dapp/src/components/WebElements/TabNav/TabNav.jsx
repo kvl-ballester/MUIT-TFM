@@ -2,10 +2,10 @@ import React from 'react'
 import { TabNavItem } from "./TabNavItem";
 import "./TabNav.scss"
 
-export const TabNav = ({tabs, tabSelected,setTabSelected,children}) => {
+export const TabNav = ({classname, tabs, tabSelected,setTabSelected,children}) => {
     
     return (
-        <div className="nav-tab-container">
+        <div className={`nav-tab-container ${classname ? classname: ''}`}>
             <ul className="nav nav-tabs">
                 {tabs.map( tab => {
 
