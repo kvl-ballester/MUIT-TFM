@@ -51,6 +51,13 @@ export function Home({ currentAccount, setAccount }) {
                 <img src="https://i.imgur.com/5K62cn9.gif" alt="trade token steps" />
               </div>
             </div>
+
+            <div className="option">
+              <h3><b>Add</b>  liquidity</h3>
+              <div className="image-container">
+                <img src="https://i.imgur.com/pcMseU1.gif" alt="add liquidity steps" />
+              </div>
+            </div>
           </div>
 
         </div>
