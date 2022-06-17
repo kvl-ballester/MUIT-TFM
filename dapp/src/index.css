@@ -478,7 +478,7 @@ code {
 }
 
 .modal-add-liquidity .spinner-container {
-  margin: 32px 0;
+  margin: 32px auto;
 }
 
 .modal-add-liquidity .logo svg{
