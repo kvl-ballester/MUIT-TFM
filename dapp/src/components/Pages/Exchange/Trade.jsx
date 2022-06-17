@@ -200,7 +200,7 @@ export const Trade = (props) => {
                     tokenApprovedMessage()
                     // OPERATION: Token to token swap
                     if (tokenToReceive.symbol !== 'ETH') {
-                        await sendContractTransaction(exchangeInstance, 'tokenToTokenSwap', { from: currentAccount }, tokenToGive, secondPool.address)
+                        await sendContractTransaction(exchangeInstance, 'tokenToTokenSwap', { from: currentAccount }, tokenToGive, tokenToReceive.address)
 
                         // OPERATION: token to eth swap
                     } else {
@@ -259,7 +259,7 @@ export const Trade = (props) => {
                     tokenApprovedMessage()
                     // Token to token swap
                     if (tokenToReceive.symbol !== 'ETH') {
-                        await sendContractTransaction(exchangeInstance, 'tokenToTokenTransferTo', { from: currentAccount }, tokenToGive, secondPool.address, recipientAddress)
+                        await sendContractTransaction(exchangeInstance, 'tokenToTokenTransferTo', { from: currentAccount }, tokenToGive, tokenToReceive.address, recipientAddress)
 
                         // token to eth swap
                     } else {
@@ -397,7 +397,6 @@ export const Trade = (props) => {
 
     const handleOnChangeAmountInputToken = (e) => {
         const value = e.target.value
-        console.log(value)
         if (value && Number(value) >= 0) {
             setInputAmount(value)
 
