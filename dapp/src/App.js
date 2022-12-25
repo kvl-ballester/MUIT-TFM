@@ -23,7 +23,8 @@ const exchangeInterface = TruffleContract(exchangeCompiled)
 const tokenInterface = TruffleContract(tokenCompiled)
 
 //CONSTANTS
-const CHAIN_ID = '0x4'
+const isDev = true
+const CHAIN_ID = isDev ? '0x539' : '0x4'
 const FACTORY_CONTRACT_ADDRESS = '0x307b138Ee21F6af6DC7184AEdD09be9551b9E249'
 
 function App() {
@@ -84,7 +85,6 @@ function App() {
       window.ethereum.on('chainChanged', ethereumChainChanged);
       setChainID()
 
-
     } else {
       setIsMetamask(false)
     }
@@ -103,7 +103,7 @@ function App() {
       exchangeInterface.setProvider(window.ethereum)
 
       async function getFactoryContract() {
-        let factoryInstance = await factoryInterface.at(FACTORY_CONTRACT_ADDRESS)
+        let factoryInstance = isDev ? await factoryInterface.deployed() : await factoryInterface.at(FACTORY_CONTRACT_ADDRESS)
         setFactoryContract(factoryInstance)
       }
 
